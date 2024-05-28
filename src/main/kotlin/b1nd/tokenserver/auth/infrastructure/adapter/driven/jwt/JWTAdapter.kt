@@ -2,6 +2,9 @@ package b1nd.tokenserver.auth.infrastructure.adapter.driven.jwt
 
 import b1nd.tokenserver.auth.application.outport.TokenPort
 import b1nd.tokenserver.auth.domain.model.*
+import b1nd.tokenserver.auth.domain.model.exception.EmptyTokenException
+import b1nd.tokenserver.auth.domain.model.exception.ExpiredTokenException
+import b1nd.tokenserver.auth.domain.model.exception.InvalidTokenException
 import b1nd.tokenserver.global.exception.model.InternalServerException
 import io.jsonwebtoken.*
 import io.jsonwebtoken.security.Keys

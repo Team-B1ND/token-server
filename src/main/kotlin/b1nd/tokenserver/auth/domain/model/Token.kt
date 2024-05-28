@@ -11,3 +11,5 @@ data class Token(
     }
 
 }
+
+enum class JWTType { ACCESS, REFRESH }

@@ -4,7 +4,7 @@ import b1nd.tokenserver.auth.application.outport.TokenPort
 import b1nd.tokenserver.auth.application.usecase.data.*
 import b1nd.tokenserver.auth.domain.model.JWTType
 import b1nd.tokenserver.auth.domain.model.Token
-import b1nd.tokenserver.auth.domain.model.WrongTokenTypeException
+import b1nd.tokenserver.auth.domain.model.exception.WrongTokenTypeException
 import org.springframework.stereotype.Component
 
 @Component

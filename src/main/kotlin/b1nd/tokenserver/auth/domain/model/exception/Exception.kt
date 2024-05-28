@@ -1,4 +1,4 @@
-package b1nd.tokenserver.auth.domain.model
+package b1nd.tokenserver.auth.domain.model.exception
 
 import b1nd.tokenserver.global.exception.model.BaseException
 

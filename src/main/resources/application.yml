@@ -4,5 +4,5 @@ server:
 jwt:
   access-secret: ${JWT_ACCESS_SECRET}
   refresh-secret: ${JWT_REFRESH_SECRET}
-  access_expiry_date: ${JWT_ACCESS_EXPIRE_DATE}
-  refresh_expiry_date: ${JWT_REFRESH_EXPIRE_DATE}
+  access_expiry_date: ${JWT_ACCESS_EXPIRY_DATE}
+  refresh_expiry_date: ${JWT_REFRESH_EXPIRY_DATE}

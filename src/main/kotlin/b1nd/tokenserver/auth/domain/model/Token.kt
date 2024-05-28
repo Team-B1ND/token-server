@@ -1,0 +1,13 @@
+package b1nd.tokenserver.auth.domain.model
+
+data class Token(
+    val subject: String,
+    val role: Int,
+    val type: JWTType
+) {
+
+    fun isNotRefreshToken(): Boolean {
+        return JWTType.REFRESH != type
+    }
+
+}

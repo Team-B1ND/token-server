@@ -11,8 +11,8 @@ import org.springframework.context.ApplicationContext
 import org.springframework.core.annotation.Order
 import org.springframework.http.codec.ServerCodecConfigurer
 import org.springframework.stereotype.Component
+import org.springframework.web.ErrorResponseException
 import org.springframework.web.reactive.function.server.*
-import org.springframework.web.server.ServerWebInputException
 import reactor.core.publisher.Mono
 
 @Component
@@ -42,7 +42,7 @@ class ExceptionExchangeHandler(
     private fun handleError(request: ServerRequest): Mono<ServerResponse> =
         when(val e = super.getError(request)) {
             is BaseException -> buildErrorResponse(e)
-            is ServerWebInputException -> buildErrorResponse(BaseException(400, "잘못된 파라미터입니다"))
+            is ErrorResponseException -> buildErrorResponse(BaseException(e.statusCode.value(), e.message))
             else -> buildErrorResponse(InternalServerException)
         }
 

@@ -6,7 +6,6 @@ import b1nd.tokenserver.domain.auth.core.exception.ExpiredTokenException
 import b1nd.tokenserver.domain.auth.core.exception.InvalidTokenException
 import b1nd.tokenserver.domain.auth.core.JWTType
 import b1nd.tokenserver.domain.auth.core.Token
-import b1nd.tokenserver.domain.common.core.InternalServerException
 import io.jsonwebtoken.*
 import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Component
@@ -17,7 +16,7 @@ import java.util.*
 @Component
 class JWTAdapter(val jwtProperties: JWTProperties): TokenPort {
 
-    override fun issue(subject: String, role: Int, type: JWTType): String {
+    override fun issue(memberId: String, accessLevel: Int, type: JWTType): String {
         val secret: String
         val expiryDate: Long
         when (type) {
@@ -33,9 +32,9 @@ class JWTAdapter(val jwtProperties: JWTProperties): TokenPort {
         }
         return Jwts.builder()
             .signWith(Keys.hmacShaKeyFor(secret.toByteArray(StandardCharsets.UTF_8)), SignatureAlgorithm.HS256)
-            .setHeaderParam(Header.JWT_TYPE, type.name)
-            .setSubject(subject)
-            .claim("role", role)
+            .setSubject(type.name)
+            .claim("memberId", memberId)
+            .claim("accessLevel", accessLevel)
             .setIssuedAt(Date())
             .setExpiration(Date(System.currentTimeMillis() + expiryDate))
             .compact()
@@ -49,16 +48,16 @@ class JWTAdapter(val jwtProperties: JWTProperties): TokenPort {
             }
             val claims: Jws<Claims> = Jwts.parserBuilder().setSigningKey(Keys.hmacShaKeyFor(secret.toByteArray())).build().parseClaimsJws(token)
             Token(
-                claims.body.subject,
-                claims.body["role"] as Int,
-                JWTType.valueOf(claims.header[Header.JWT_TYPE] as String)
+                claims.body["memberId"] as String,
+                claims.body["accessLevel"] as Int,
+                JWTType.of(claims.body.subject)
             )
         } catch (e: Exception) {
             when (e) {
                 is ExpiredJwtException -> throw ExpiredTokenException
                 is JwtException -> throw InvalidTokenException
                 is IllegalArgumentException -> throw EmptyTokenException
-                else -> throw InternalServerException
+                else -> throw InvalidTokenException
             }
         }
     }

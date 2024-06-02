@@ -20,7 +20,7 @@ class AuthUseCase(val tokenPort: TokenPort) {
         if(token.isNotRefreshToken()) {
             throw WrongTokenTypeException
         }
-        return issueToken(IssueTokenRequest(token.subject, token.role), JWTType.ACCESS)
+        return issueToken(IssueTokenRequest(token.memberId, token.accessLevel), JWTType.ACCESS)
     }
 
     //todo Redis 저장
@@ -36,7 +36,7 @@ class AuthUseCase(val tokenPort: TokenPort) {
 
     fun verifyToken(req: VerifyTokenRequest): VerifyTokenResponse {
         val token: Token = tokenPort.parse(req.token, JWTType.ACCESS)
-        return VerifyTokenResponse(token.subject, token.role, 0)
+        return VerifyTokenResponse(token.memberId, token.accessLevel, 0)
     }
 
 }

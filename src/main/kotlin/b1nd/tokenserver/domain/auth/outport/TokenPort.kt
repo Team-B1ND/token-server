@@ -5,7 +5,7 @@ import b1nd.tokenserver.domain.auth.core.Token
 
 interface TokenPort {
 
-    fun issue(subject: String, role: Int, type: JWTType): String
+    fun issue(memberId: String, accessLevel: Int, type: JWTType): String
 
     fun parse(token: String, type: JWTType): Token
 

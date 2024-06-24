@@ -1,8 +1,8 @@
-package b1nd.tokenserver.infrastructure.global.exception.handler
+package b1nd.tokenserver.infrastructure.exception.handler
 
-import b1nd.tokenserver.infrastructure.global.data.response.BaseErrorResponse
-import b1nd.tokenserver.domain.common.core.BaseException
-import b1nd.tokenserver.domain.common.core.InternalServerException
+import b1nd.tokenserver.application.common.data.response.BaseErrorResponse
+import b1nd.tokenserver.domain.common.exception.BaseException
+import b1nd.tokenserver.domain.common.exception.InternalServerException
 import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.web.WebProperties
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler

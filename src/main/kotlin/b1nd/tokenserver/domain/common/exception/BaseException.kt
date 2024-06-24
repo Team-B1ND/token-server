@@ -1,4 +1,4 @@
-package b1nd.tokenserver.domain.common.core
+package b1nd.tokenserver.domain.common.exception
 
 open class BaseException(val status: Int, override val message: String) : RuntimeException()
 

@@ -1,4 +1,4 @@
-package b1nd.tokenserver.domain.auth.usecase.data
+package b1nd.tokenserver.application.auth.usecase.data
 
 data class TokenResponse(
     val token: String

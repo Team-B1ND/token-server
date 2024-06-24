@@ -1,6 +1,6 @@
-package b1nd.tokenserver.domain.auth.core.exception
+package b1nd.tokenserver.domain.auth.exception
 
-import b1nd.tokenserver.domain.common.core.BaseException
+import b1nd.tokenserver.domain.common.exception.BaseException
 
 object EmptyTokenException : BaseException(
     400, "토큰이 전송되지 않았습니다"

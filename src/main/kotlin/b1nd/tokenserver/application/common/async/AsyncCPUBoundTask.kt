@@ -10,7 +10,7 @@ class AsyncCPUBoundTask {
 
         fun <T> execute(supplier: Callable<T>): Mono<T> {
             return Mono.fromCallable(supplier)
-                .subscribeOn(Schedulers.parallel())
+                .subscribeOn(Schedulers.boundedElastic())
         }
 
     }

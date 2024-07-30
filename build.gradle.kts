@@ -7,7 +7,7 @@ plugins {
 	kotlin("plugin.spring") version "1.8.22"
 }
 
-val jjwtVersion = "0.11.5"
+val jjwtVersion = "0.12.6"
 
 group = "b1nd"
 version = "0.0.1-SNAPSHOT"
@@ -42,7 +42,7 @@ dependencies {
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
-		freeCompilerArgs += "-Xjsr305=strict"
+		freeCompilerArgs = freeCompilerArgs + "-Xjsr305=strict"
 		jvmTarget = "17"
 	}
 }

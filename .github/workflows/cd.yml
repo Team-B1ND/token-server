@@ -53,9 +53,8 @@ jobs:
           password: ${{ secrets.LINUX_PASSWORD }}
           port: ${{ secrets.LINUX_SSH_PORT }}
           script: |
+            cd docker
             docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
-            docker stop token-server
-            docker rm token-server
-            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/token-server:latest
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/token-server:latest
-            docker run -d -p 8050:8050 --name token-server ${{ secrets.DOCKERHUB_USERNAME }}/token-server:latest
+            docker compose -f dodamdodam-docker-compose.yml stop token-server
+            docker compose -f dodamdodam-docker-compose.yml rm -f token-server
+            docker compose -f dodamdodam-docker-compose.yml up token-server --pull always -d

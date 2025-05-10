@@ -50,7 +50,7 @@ jobs:
         with:
           host: ${{ secrets.LINUX_HOST }}
           username: ${{ secrets.LINUX_USERNAME }}
-          password: ${{ secrets.LINUX_PASSWORD }}
+          key: ${{ secrets.LINUX_PRIVATE_KEY }}
           port: ${{ secrets.LINUX_SSH_PORT }}
           script: |
             cd docker
